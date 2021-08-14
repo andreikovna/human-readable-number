@@ -33,8 +33,10 @@ module.exports = function toReadable (number) {
             numberString = numericOne[number/100] + ' hundred'			
         } else if (number % 10 === 0){ //140, 150...
             numberString = numericOne[(number-number%100)/100] + ' hundred ' + numericThree[(number%100)/10 - 1]
-        } else if (number % 100 < 20) { // 311, 617..
+        } else if (number % 100 < 20 && number % 100 > 10) { // 311, 617..
             numberString = numericOne[(number-number%100)/100] + ' hundred ' + numericTwo[(number%100)%10]
+        } else if (number % 100 < 10) {
+            numberString = numericOne[(number-number%100)/100] + ' hundred ' + numericOne[number%100]
         } else { // 331, 687..
             numberString = numericOne[(number-number%100)/100] + ' hundred ' + numericThree[(number%100-((number%100)%10))/10 - 1] + ' ' + numericOne[(number%100)%10]
         }
